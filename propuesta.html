@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Propuesta · Valkiria Valdemoro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --bg-card: #111111;
+        --bg-elev: #161616;
+        --border: #222222;
+        --text: #f0f0f0;
+        --muted: #888888;
+        --dim: #444444;
+        --rojo: #e8192c;
+        --rojo-soft: rgba(232, 25, 44, 0.1);
+        --dorado: #c9943a;
+        --verde-ok: #22c55e;
+        --f-display: "Bebas Neue", sans-serif;
+        --f-body: "Plus Jakarta Sans", sans-serif;
+        --f-mono: "JetBrains Mono", monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--f-body);
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 0 20px 80px;
+      }
+
+      /* ── BLOQUE 1 — CABECERA ── */
+      .cabecera {
+        padding: 56px 0 40px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .cabecera-para {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+
+      .cabecera-nombre {
+        font-family: var(--f-display);
+        font-size: clamp(3.5rem, 14vw, 6rem);
+        line-height: 0.95;
+        letter-spacing: 0.02em;
+        color: #fff;
+        text-shadow:
+          0 0 8px var(--rojo),
+          0 0 24px var(--rojo),
+          0 0 48px rgba(232, 25, 44, 0.4);
+        margin-bottom: 16px;
+      }
+
+      .cabecera-sub {
+        font-size: 15px;
+        color: var(--muted);
+        max-width: 460px;
+        line-height: 1.6;
+      }
+
+      .cabecera-sub strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      /* ── BLOQUE 2 — DOS OPCIONES ── */
+      .opciones {
+        padding: 48px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .bloque-label {
+        font-family: var(--f-mono);
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rojo);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .bloque-label::before {
+        content: "";
+        width: 20px;
+        height: 1px;
+        background: var(--rojo);
+      }
+
+      .opciones-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .opcion-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 28px 24px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .opcion-card.destacada {
+        border-color: var(--rojo);
+        background: linear-gradient(
+          160deg,
+          rgba(232, 25, 44, 0.06) 0%,
+          var(--bg-card) 60%
+        );
+      }
+
+      .opcion-card.destacada::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--rojo),
+          transparent
+        );
+      }
+
+      .opcion-badge {
+        font-family: var(--f-mono);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 100px;
+        margin-bottom: 16px;
+        display: inline-block;
+      }
+
+      .opcion-badge.solo {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--muted);
+        border: 1px solid var(--border);
+      }
+
+      .opcion-badge.pack {
+        background: var(--rojo-soft);
+        color: var(--rojo);
+        border: 1px solid rgba(232, 25, 44, 0.25);
+      }
+
+      .opcion-titulo {
+        font-family: var(--f-display);
+        font-size: 1.4rem;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        margin-bottom: 4px;
+        line-height: 1.1;
+      }
+
+      .opcion-precio {
+        font-family: var(--f-display);
+        font-size: clamp(2.2rem, 8vw, 3rem);
+        letter-spacing: -0.01em;
+        line-height: 1;
+        margin: 12px 0 4px;
+      }
+
+      .opcion-precio.precio-normal {
+        color: var(--text);
+      }
+      .opcion-precio.precio-pack {
+        color: var(--dorado);
+      }
+
+      .opcion-periodo {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .opcion-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+
+      .opcion-desc strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .web-incluida {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--f-mono);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--verde-ok);
+        margin-top: 12px;
+      }
+
+      .web-incluida::before {
+        content: "✓";
+        font-size: 11px;
+      }
+
+      .web-tachada {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        color: var(--dim);
+        text-decoration: line-through;
+        letter-spacing: 0.04em;
+        margin-top: 6px;
+      }
+
+      @media (max-width: 520px) {
+        .opciones-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── BLOQUE 3 — QUÉ INCLUYE EL PACK ── */
+      .incluye {
+        padding: 48px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .incluye-titulo {
+        font-family: var(--f-display);
+        font-size: clamp(1.8rem, 6vw, 2.8rem);
+        letter-spacing: 0.02em;
+        color: var(--text);
+        line-height: 1;
+        margin-bottom: 32px;
+      }
+
+      .incluye-titulo span {
+        color: var(--rojo);
+      }
+
+      .incluye-lista {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .incluye-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 20px 22px;
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        gap: 16px;
+        align-items: start;
+        transition: border-color 0.2s;
+      }
+
+      .incluye-item:hover {
+        border-color: #333;
+      }
+
+      .incluye-num {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        color: var(--rojo);
+        font-weight: 500;
+        padding-top: 2px;
+      }
+
+      .incluye-nombre {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+
+      .incluye-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .incluye-desc strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      /* ── BLOQUE 4 — EL ARGUMENTO CLAVE ── */
+      .argumento {
+        padding: 48px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .argumento-titulo {
+        font-family: var(--f-display);
+        font-size: clamp(1.8rem, 6vw, 2.8rem);
+        letter-spacing: 0.02em;
+        color: var(--text);
+        line-height: 1;
+        margin-bottom: 24px;
+      }
+
+      .argumento-titulo span {
+        color: var(--dorado);
+      }
+
+      .argumento-caja {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 28px;
+        margin-bottom: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .argumento-caja::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--dorado);
+      }
+
+      .argumento-caja p {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .argumento-caja p strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .argumento-caja-numero {
+        font-family: var(--f-display);
+        font-size: 2.5rem;
+        letter-spacing: -0.02em;
+        color: var(--dorado);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .argumento-caja-numero span {
+        font-size: 1rem;
+        color: var(--dim);
+        font-family: var(--f-mono);
+        letter-spacing: 0.05em;
+        margin-left: 6px;
+      }
+
+      /* ── BLOQUE 5 — CIERRE ── */
+      .cierre {
+        padding: 48px 0 0;
+      }
+
+      .cierre-titulo {
+        font-family: var(--f-display);
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        letter-spacing: 0.02em;
+        line-height: 1;
+        color: var(--text);
+        margin-bottom: 16px;
+      }
+
+      .cierre-titulo .neon {
+        color: #fff;
+        text-shadow:
+          0 0 6px var(--rojo),
+          0 0 18px var(--rojo),
+          0 0 36px rgba(232, 25, 44, 0.4);
+      }
+
+      .cierre-sub {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 420px;
+        line-height: 1.65;
+        margin-bottom: 32px;
+      }
+
+      .cierre-sub strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .btn-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: #25d366;
+        color: #fff;
+        padding: 16px 28px;
+        border-radius: 100px;
+        font-family: var(--f-mono);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        transition: all 0.25s;
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
+      }
+
+      .btn-whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4);
+      }
+
+      .btn-whatsapp svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+        flex-shrink: 0;
+      }
+
+      .cierre-firma {
+        margin-top: 48px;
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .cierre-firma-nombre {
+        font-family: var(--f-display);
+        font-size: 1.2rem;
+        letter-spacing: 0.04em;
+        color: var(--text);
+      }
+
+      .cierre-firma-rol {
+        font-family: var(--f-mono);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-top: 2px;
+      }
+
+      .cierre-fecha {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--dim);
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══════════════════════════════════════
+       BLOQUE 1 — CABECERA
+  ══════════════════════════════════════ -->
+    <div class="cabecera">
+      <p class="cabecera-para">Propuesta para</p>
+      <div class="cabecera-nombre">VALKIRIA</div>
+      <p class="cabecera-sub">
+        Dos opciones. Sin letra pequeña.<br />
+        <strong>Elige lo que encaja con lo que necesitas ahora.</strong>
+      </p>
+    </div>
+
+    <!-- ══════════════════════════════════════
+       BLOQUE 2 — DOS OPCIONES
+  ══════════════════════════════════════ -->
+    <div class="opciones">
+      <p class="bloque-label">Las opciones</p>
+
+      <div class="opciones-grid">
+        <!-- Opción A: solo web -->
+        <div class="opcion-card">
+          <span class="opcion-badge solo">Solo web</span>
+          <div class="opcion-titulo">Página web profesional</div>
+          <div class="opcion-precio precio-normal">500€</div>
+          <p class="opcion-periodo">Pago único · Sin mantenimiento</p>
+          <p class="opcion-desc">
+            Web completa con diseño personalizado, formulario de reservas, SEO
+            local y entrega en menos de 7 días.
+            <strong>La web es tuya desde el primer día.</strong>
+          </p>
+        </div>
+
+        <!-- Opción B: pack completo -->
+        <div class="opcion-card destacada">
+          <span class="opcion-badge pack">Pack completo</span>
+          <div class="opcion-titulo">Automatización<br />+ Web incluida</div>
+          <div class="opcion-precio precio-pack">750€</div>
+          <p class="opcion-periodo">Pago único · Sin mantenimiento mensual</p>
+          <p class="opcion-desc">
+            Todo lo de abajo montado, configurado y entregado funcionando.
+            <strong>Sin cuotas mensuales.</strong> Lo pagas una vez y es tuyo.
+          </p>
+          <div class="web-incluida">Página web incluida</div>
+          <div class="web-tachada">Valor web: 500€</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+       BLOQUE 3 — QUÉ INCLUYE EL PACK
+  ══════════════════════════════════════ -->
+    <div class="incluye">
+      <p class="bloque-label">Qué incluye el pack</p>
+      <h2 class="incluye-titulo">
+        Todo montado.<br /><span>Nada a medias.</span>
+      </h2>
+
+      <div class="incluye-lista">
+        <div class="incluye-item">
+          <span class="incluye-num">01</span>
+          <div>
+            <div class="incluye-nombre">Página web profesional</div>
+            <p class="incluye-desc">
+              Diseño dark mode con la identidad de Valkiria. Formulario de
+              reservas conectado a tu email, SEO local, responsive en móvil y
+              desktop. Entrega en 7 días.
+            </p>
+          </div>
+        </div>
+
+        <div class="incluye-item">
+          <span class="incluye-num">02</span>
+          <div>
+            <div class="incluye-nombre">
+              Respuestas automáticas en DM con ManyChat
+            </div>
+            <p class="incluye-desc">
+              Flujos configurados para los mensajes más frecuentes: horarios,
+              reservas, precios de cachimbas.
+              <strong
+                >Sin estar pendiente del teléfono a las 2 de la mañana.</strong
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="incluye-item">
+          <span class="incluye-num">03</span>
+          <div>
+            <div class="incluye-nombre">
+              Calendario de contenido para 3 meses
+            </div>
+            <p class="incluye-desc">
+              Calendario editorial completo con pilares de contenido, formatos,
+              temas y copys para cada publicación.
+              <strong>Más un megaprompt</strong> para que puedas seguir
+              generando ideas y analizar qué está funcionando en el sector, sin
+              depender de nadie.
+            </p>
+          </div>
+        </div>
+
+        <div class="incluye-item">
+          <span class="incluye-num">04</span>
+          <div>
+            <div class="incluye-nombre">CRM + Email nurturing</div>
+            <p class="incluye-desc">
+              Sistema para capturar y guardar los emails de cada reserva.
+              <strong
+                >En 6 meses puedes tener 300-500 contactos de gente que ya ha
+                venido al local.</strong
+              >
+              Secuencias de email para promociones, eventos y novedades sin
+              depender del algoritmo de Instagram.
+            </p>
+          </div>
+        </div>
+
+        <div class="incluye-item">
+          <span class="incluye-num">05</span>
+          <div>
+            <div class="incluye-nombre">Estrategia de redes sociales</div>
+            <p class="incluye-desc">
+              Plan completo para maximizar seguidores y visualizaciones: pilares
+              de contenido, mejores horas, hashtags, formatos que funcionan para
+              un local como Valkiria y cómo usar los audios de tendencia sin
+              perder la identidad.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+       BLOQUE 4 — ARGUMENTO CLAVE
+  ══════════════════════════════════════ -->
+    <div class="argumento">
+      <p class="bloque-label">Por qué importa el CRM</p>
+      <h2 class="argumento-titulo">
+        El activo que<br /><span>nadie ve venir.</span>
+      </h2>
+
+      <div class="argumento-caja">
+        <div class="argumento-caja-numero">
+          300–500<span>emails en 6 meses</span>
+        </div>
+        <p>
+          Cada reserva que entra por la web deja un email real de alguien que ya
+          ha venido a Valkiria. No son seguidores anónimos de Instagram. Son
+          <strong>clientes reales con nombre y contacto directo.</strong>
+        </p>
+      </div>
+
+      <div class="argumento-caja">
+        <p>
+          Con esa lista puedes mandar una promoción un jueves por la tarde y
+          llenar el local ese fin de semana.
+          <strong
+            >Sin pagar publicidad. Sin depender de que Instagram decida
+            mostrarlo.</strong
+          >
+          El email llega siempre.
+        </p>
+      </div>
+
+      <div class="argumento-caja">
+        <p>
+          Instagram puede cambiar el algoritmo mañana. La lista de emails es
+          tuya. Nadie te la puede quitar.
+        </p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+       BLOQUE 5 — CIERRE
+  ══════════════════════════════════════ -->
+    <div class="cierre">
+      <p class="bloque-label">Siguiente paso</p>
+      <h2 class="cierre-titulo">
+        <span class="neon">¿Con cuál</span><br />te quedas?
+      </h2>
+      <p class="cierre-sub">
+        Dime por aquí y lo arrancamos esta semana. Si tienes alguna duda sobre
+        qué incluye cada opción, pregunta sin compromiso.
+        <strong>Sin presión.</strong>
+      </p>
+
+      <a
+        href="https://wa.me/34640621294?text=Hola%20Sa%C3%BAl%2C%20he%20visto%20la%20propuesta%20y%20quiero%20hablar%20sobre%20las%20opciones"
+        class="btn-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
+        Responder por WhatsApp
+      </a>
+
+      <div class="cierre-firma">
+        <div>
+          <div class="cierre-firma-nombre">Saúl Poveda</div>
+          <div class="cierre-firma-rol">
+            Marketing Digital · IA · Desarrollo web
+          </div>
+        </div>
+        <div class="cierre-fecha">Julio 2026</div>
+      </div>
+    </div>
+  </body>
+</html>
